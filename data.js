@@ -27,7 +27,7 @@ const knowledgeCategories = [
 
 这就是我的学习过程，阶段二开始已经大三下开学了，写完draw.io也就快期末了`,
                 images: [
-                    'https://s41.ax1x.com/2026/08/06/pm7ubmF.jpg'
+                    'images/learn-route.jpg'
                 ]
             },
             {
@@ -68,7 +68,7 @@ const knowledgeCategories = [
 
 本人很菜，希望大家看看就行，不要嘲笑，也希望可以帮助大家一点！`,
                 images: [
-                    'https://s41.ax1x.com/2026/08/06/pm7ugeg.jpg'
+                    'images/learn-tips.jpg'
                 ]
             },
             
@@ -152,7 +152,7 @@ const knowledgeCategories = [
                 date: '2026-08-06',
                 content: `本网页框架全用Trae CN构建。
 
-全部代码全在本鼠github仓库，大家要用随便拉去。
+全部代码全在本鼠github仓库，大家要用随便拉取。（github：https://github.com/Smile-xhf/Vercel-front/）
 
 该网页是静态网页，不包含一点后端代码，拉下来即可用。
 
