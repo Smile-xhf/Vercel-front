@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页 | Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 顶部导航（滚动后显示） -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">My<span>Portfolio</span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#about" class="nav-link">关于我</a></li>
+                <li><a href="#knowledge" class="nav-link">知识库</a></li>
+                <li><a href="#guestbook" class="nav-link">留言板</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero 欢迎区（无导航） -->
+    <section id="hero" class="hero">
+        <div class="hero-bg">
+            <div class="gradient-overlay"></div>
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <p class="welcome-text fade-in-up">欢迎来到我的个人空间 👋</p>
+            <h1 class="hero-title fade-in-up delay-1">
+                你好，我是 <span class="highlight">Daemon</span>
+            </h1>
+            <p class="hero-subtitle fade-in-up delay-2">
+                java后端开发· UI设计师 · 终身学习者
+            </p>
+            <div class="hero-scroll fade-in-up delay-3">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <p>向下滚动了解更多</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Me</span>
+                <h2 class="section-title">关于我</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <div class="avatar-placeholder">
+                            <img src="images/avatar.jpg" alt="我的头像">
+                        </div>
+                        <div class="image-decoration"></div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>你好，很高兴认识你 👋</h3>
+                    <p>
+                        我是一名偏向于后端开发的鼠鼠，正在找实习！菜菜....。
+                        虽然鼠鼠现在路途坎坷，但是我依旧热爱生活。
+                    </p>
+                    <p>
+                        我希望我能为你提供一些帮助！更希望你能找到学习方向！
+                    </p>
+                    <p>
+                        学而不思则罔，思而不学则殆！！！！！！
+                    </p>
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <span class="detail-label">位置</span>
+                                <span class="detail-value">中国 · 四川</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-briefcase"></i>
+                            <div>
+                                <span class="detail-label">工作经验</span>
+                                <span class="detail-value">无</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <span class="detail-label">学历</span>
+                                <span class="detail-value">学院本-软件工程</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <span class="detail-label">邮箱</span>
+                                <span class="detail-value">19881267971@163.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-social">
+                        <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="微信"><i class="fab fa-weixin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 知识库分类 -->
+    <section id="knowledge" class="knowledge section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Knowledge Base</span>
+                <h2 class="section-title">我的知识库</h2>
+                <div class="section-line"></div>
+                <p class="section-desc">点击下方分类，查看我在各个领域的经验分享</p>
+            </div>
+            <div class="knowledge-grid" id="knowledgeGrid">
+                <!-- 分类卡片由 JS 动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 文章详情视图 -->
+    <div class="post-detail" id="postDetail">
+        <div class="post-detail-header">
+            <button class="back-btn" id="backBtn">
+                <i class="fas fa-arrow-left"></i> 返回
+            </button>
+            <h2 class="post-detail-title" id="postDetailTitle"></h2>
+            <button class="toc-toggle" id="tocToggle" aria-label="目录">
+                <i class="fas fa-list"></i>
+            </button>
+        </div>
+        <div class="post-detail-body">
+            <!-- 目录侧边栏 -->
+            <aside class="post-toc" id="postToc">
+                <div class="toc-header">
+                    <i class="fas fa-list-ul"></i>
+                    <span>目录</span>
+                </div>
+                <ul class="toc-list" id="tocList">
+                    <!-- 目录由 JS 动态生成 -->
+                </ul>
+            </aside>
+            <!-- 文章内容 -->
+            <div class="post-detail-content" id="postDetailContent">
+                <!-- 文章列表由 JS 动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 留言板 -->
+    <section id="guestbook" class="guestbook section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Guestbook</span>
+                <h2 class="section-title">留言板</h2>
+                <div class="section-line"></div>
+                <p class="section-desc">留下你的脚印，让我知道你来过 ✨</p>
+            </div>
+            <div class="guestbook-content">
+                <div class="guestbook-form-wrapper">
+                    <div class="guestbook-form">
+                        <h3>写留言</h3>
+                        <div class="form-group">
+                            <input type="text" id="guestName" placeholder="你的昵称（最多 20 字）" maxlength="20" required>
+                            <span class="char-count"><span id="nameCount">0</span>/20</span>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="guestMessage" placeholder="写下你的留言（最多 200 字）" rows="4" maxlength="200" required></textarea>
+                            <div class="char-count-wrapper">
+                                <span id="msgCount">0</span>/200
+                            </div>
+                        </div>
+                        <div class="form-tip" id="formTip"></div>
+                        <button class="btn btn-primary btn-submit" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i> 发布留言
+                        </button>
+                    </div>
+                </div>
+                <div class="guestbook-list">
+                    <div class="guestbook-list-header">
+                        <h3>全部留言 <span id="messageCount">(0)</span></h3>
+                    </div>
+                    <div class="messages-container" id="messagesContainer">
+                        <!-- 留言列表由 JS 动态生成 -->
+                        <div class="empty-state" id="emptyState">
+                            <i class="fas fa-comments"></i>
+                            <p>还没有留言，快来做第一个留言的人吧！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Deamon. 保留所有权利.</p>
+                <p>使用 <i class="fas fa-heart"></i> 和 <i class="fas fa-code"></i> 打造</p>
+                <div class="visit-counter">
+                    <span><i class="fas fa-eye"></i> 访问量 <span id="busuanzi_value_site_pv">0</span></span>
+                    <span class="counter-divider">|</span>
+                    <span><i class="fas fa-user"></i> 访客 <span id="busuanzi_value_site_uv">0</span></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

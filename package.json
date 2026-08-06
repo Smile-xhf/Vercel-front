@@ -1,0 +1,14 @@
+{
+  "name": "personal-portfolio",
+  "version": "1.0.0",
+  "description": "个人主页 - 展示经历、知识库和留言板的静态网站",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve -l 3000",
+    "start": "npx serve -l 3000",
+    "build": "echo '纯静态网站，无需构建' && exit 0"
+  },
+  "keywords": ["personal", "portfolio", "website", "static"],
+  "author": "Daemon",
+  "license": "MIT"
+}
