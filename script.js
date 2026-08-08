@@ -1,5 +1,7 @@
 // ============ 导航栏：滚动后显示 ============
 const navbar = document.getElementById('navbar');
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > window.innerHeight * 0.5) {
@@ -9,7 +11,14 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// 导航链接平滑滚动
+// 汉堡菜单切换
+navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+});
+
+// 点击导航链接后关闭菜单
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -20,6 +29,10 @@ document.querySelectorAll('.nav-link').forEach(link => {
             const top = targetSection.getBoundingClientRect().top + window.pageYOffset - offset;
             window.scrollTo({ top, behavior: 'smooth' });
         }
+        // 关闭移动端菜单
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.style.overflow = '';
     });
 });
 
@@ -108,6 +121,10 @@ function openCategory(categoryId) {
 
     // 重置 TOC 状态
     postToc.classList.remove('open');
+    const tocOverlay = document.getElementById('tocOverlay');
+    if (tocOverlay) {
+        tocOverlay.classList.remove('show');
+    }
     document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
 
     // 绑定目录点击事件
@@ -126,6 +143,10 @@ function openCategory(categoryId) {
             // 移动端点击后关闭目录
             if (window.innerWidth <= 968) {
                 postToc.classList.remove('open');
+                const tocOverlayEl = document.getElementById('tocOverlay');
+                if (tocOverlayEl) {
+                    tocOverlayEl.classList.remove('show');
+                }
             }
         });
     });
@@ -177,6 +198,12 @@ function closeCategory() {
     postDetail.classList.remove('open');
     document.body.style.overflow = '';
     currentCategory = null;
+    // 关闭移动端目录
+    postToc.classList.remove('open');
+    const overlay = document.getElementById('tocOverlay');
+    if (overlay) {
+        overlay.classList.remove('show');
+    }
     if (scrollSpyObserver) {
         scrollSpyObserver.disconnect();
         scrollSpyObserver = null;
@@ -188,7 +215,33 @@ backBtn.addEventListener('click', closeCategory);
 // 移动端目录切换
 tocToggle.addEventListener('click', () => {
     postToc.classList.toggle('open');
+    // 切换遮罩层
+    const overlay = document.getElementById('tocOverlay');
+    if (overlay) {
+        overlay.classList.toggle('show', postToc.classList.contains('open'));
+    }
+    if (postToc.classList.contains('open')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = postDetail.classList.contains('open') ? 'hidden' : '';
+    }
 });
+
+// 创建 TOC 遮罩层
+function createTocOverlay() {
+    const overlay = document.createElement('div');
+    overlay.id = 'tocOverlay';
+    overlay.className = 'toc-overlay';
+    overlay.addEventListener('click', () => {
+        postToc.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.style.overflow = postDetail.classList.contains('open') ? 'hidden' : '';
+    });
+    const postDetailBody = document.querySelector('.post-detail-body');
+    if (postDetailBody) {
+        postDetailBody.appendChild(overlay);
+    }
+}
 
 // ESC 键关闭
 document.addEventListener('keydown', (e) => {
@@ -371,6 +424,7 @@ function escapeHtml(str) {
 document.addEventListener('DOMContentLoaded', () => {
     renderCategories();
     loadMessages();
+    createTocOverlay();
     console.log('%c欢迎来到我的个人网站！', 'color: #667eea; font-size: 20px; font-weight: bold;');
     console.log('%c感谢您的访问 👋', 'color: #764ba2; font-size: 14px;');
 });
